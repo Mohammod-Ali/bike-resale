@@ -3,7 +3,7 @@ import { FaMotorcycle } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer className="footer p-10 bg-base-200 text-base-content mt-16">
+        <footer className="footer p-10 bg-base-200 text-base-content mt-24">
   <div className='mx-auto'>
     <FaMotorcycle className='w-24 h-24 '></FaMotorcycle>
     <p>ACME Industries Ltd.<br/>Providing bike resale since 1992</p>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaMotorcycle } from "react-icons/fa";
 
 const Navbar = () => {
   const menuItems = (
@@ -43,7 +44,7 @@ const Navbar = () => {
            {menuItems}
           </ul>
         </div>
-        <Link to='/' className="btn btn-ghost normal-case text-xl">Bike Resale</Link>
+        <Link to='/' className="btn btn-ghost normal-case text-xl"><FaMotorcycle className="w-10 h-10 mr-2 sm:hidden lg:block"></FaMotorcycle> Bike Resale</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
