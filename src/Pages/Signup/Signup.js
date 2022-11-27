@@ -9,7 +9,7 @@ const Signup = () => {
 
     const {register, formState: { errors }, handleSubmit} = useForm()
 
-    const handleLogin = data => {
+    const handleSignUp = data => {
         createUser(data.email, data.password)
         .then(result => {
             const user = result.user;
@@ -26,7 +26,7 @@ const Signup = () => {
       <div className="w-96 p-7">
       <h1 className="text-3xl text-center font-bold"><FaMotorcycle className='h-40 w-80 text-black	'></FaMotorcycle>Sign Up</h1>
       
-      <form onSubmit={handleSubmit(handleLogin)}>
+      <form onSubmit={handleSubmit(handleSignUp)}>
     
       <div className="form-control w-full max-w-xs">
           <label className="label">
