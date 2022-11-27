@@ -4,8 +4,14 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const PrivateRoute = ({children}) => {
 
-    const {user} = useContext(AuthContext)
+    const {user, loading} = useContext(AuthContext)
     const location = useLocation()
+
+    if(loading){
+        return <div className='flex align-middle justify-center'>
+            <progress className='progress w-56 '></progress>
+        </div>
+    }
 
     if(user){
         return children

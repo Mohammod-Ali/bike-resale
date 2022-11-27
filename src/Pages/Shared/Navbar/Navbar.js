@@ -20,6 +20,9 @@ const Navbar = () => {
       <li>
         <Link to='/blogs'>Blogs</Link>
       </li>
+      <li>
+        <Link to='/checkroute'>Chick Route</Link>
+      </li>
       {
         user?.uid ? <li>
         <button onClick={handleLogOut}>Sign Out</button>
