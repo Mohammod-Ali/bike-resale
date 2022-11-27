@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaMotorcycle } from "react-icons/fa";
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
@@ -8,18 +8,27 @@ const Login = () => {
     const {register, formState: { errors }, handleSubmit} = useForm()
 
     const {signIn} = useContext(AuthContext)
+    const [loginError, setLoginError] = useState('')
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname || '/';
    
     const handleLogin = data => {
+        setLoginError('')
         signIn(data.email, data.password)
         .then(result => {
             const user = result.user;
             console.log(user)
+            navigate(from, {replace: true})
         })
         .catch(err => {
-            console.error(err)
+            console.error(err.message)
+            setLoginError(err.message)
         })
-        
       }
+
+      
     return (
         <div className="h-[800px]  flex justify-center items-center">
             
@@ -59,6 +68,10 @@ const Login = () => {
       
       {/* <p>{data}</p> */}
       <input className="btn btn-outline w-full" value='Login' type="submit" />
+      {/* login error */}
+      {
+        loginError && <p className='text-red-600'>{loginError}</p>
+      }
 
     </form>
       <p className='mt-3'>New to Bike Resale. Please <Link className="text-primary" to='/signup'>Sign Up</Link></p>

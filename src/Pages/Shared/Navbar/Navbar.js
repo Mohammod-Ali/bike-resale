@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaMotorcycle } from "react-icons/fa";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
 const Navbar = () => {
+  const {user, logOUt} = useContext(AuthContext)
+
+  const handleLogOut = () => {
+    logOUt()
+    .then(() => {})
+    .catch(err => console.error(err))
+  }
+
   const menuItems = (
     <>
       <li>
@@ -11,9 +20,15 @@ const Navbar = () => {
       <li>
         <Link to='/blogs'>Blogs</Link>
       </li>
+      {
+        user?.uid ? <li>
+        <button onClick={handleLogOut}>Sign Out</button>
+      </li>
+      :
       <li>
         <Link to='/login'>Login</Link>
       </li>
+      }
     </>
   );
 
