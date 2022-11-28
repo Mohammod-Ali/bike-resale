@@ -12,6 +12,7 @@ const Signup = () => {
     const {register, formState: { errors }, handleSubmit} = useForm()
     const [signUpError, setSignUpError] = useState('')
 
+    // sign in with email and pass handler
     const handleSignUp = data => {
         setSignUpError('')
         createUser(data.email, data.password)
@@ -34,6 +35,8 @@ const Signup = () => {
             setSignUpError(err.message)
         })
     }
+
+    
 
     return (
         <div className="h-[800px]  flex justify-center items-center">

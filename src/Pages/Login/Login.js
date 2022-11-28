@@ -3,17 +3,21 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaMotorcycle } from "react-icons/fa";
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
     const {register, formState: { errors }, handleSubmit} = useForm()
 
-    const {signIn} = useContext(AuthContext)
+    const {signIn, googleLoginProvider} = useContext(AuthContext)
     const [loginError, setLoginError] = useState('')
     const navigate = useNavigate()
     const location = useLocation()
 
+    const googleProvider = new GoogleAuthProvider()
+
     const from = location.state?.from?.pathname || '/';
-   
+
+  //  login handler
     const handleLogin = data => {
         setLoginError('')
         signIn(data.email, data.password)
@@ -25,6 +29,21 @@ const Login = () => {
         .catch(err => {
             console.error(err.message)
             setLoginError(err.message)
+        })
+      }
+
+      // google login handler
+      const googleLoginHandler = () => {
+        setLoginError('')
+        googleLoginProvider(googleProvider)
+        .then(result => {
+          const user = result.user;
+          console.log(user)
+          navigate(from, { replace: true})
+        })
+        .catch(error => {
+          console.error(error)
+          setLoginError(error.message)
         })
       }
 
@@ -76,7 +95,7 @@ const Login = () => {
     </form>
       <p className='mt-3'>New to Bike Resale. Please <Link className="text-primary" to='/signup'>Sign Up</Link></p>
       <div className="divider">OR</div>
-        <button className="btn btn-outline w-full"><FaGoogle className='m-2 text-2xl'></FaGoogle> Continue with Google</button>
+        <button onClick={googleLoginHandler} className="btn btn-outline w-full"><FaGoogle className='m-2 text-2xl'></FaGoogle> Continue with Google</button>
       </div>
     </div>
     );
