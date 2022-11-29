@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import Banner from '../Banner/Banner';
 import BikeCard from '../BikeCard/BikeCard';
@@ -7,15 +8,21 @@ import CategoryCart from '../CategoryCart/CategoryCart';
 
 
 const Home = () => {
-    const [bikes, setBikes] = useState()
+    // const [bikes, setBikes] = useState()
     const [category, setCategory] = useState()
 console.log(category)
 
-    useEffect( () =>{
-        fetch('http://localhost:5000/bikeCollections')
-        .then(res => res.json())
-        .then(data => setBikes(data))
-    },[])
+const {data: bikes = []} = useQuery({
+    queryKey: ["bikeCollections"],
+    queryFn: () => fetch('http://localhost:5000/bikeCollections')
+    .then(res => res.json())
+})
+
+    // useEffect( () =>{
+    //     fetch('http://localhost:5000/bikeCollections')
+    //     .then(res => res.json())
+    //     .then(data => setBikes(data))
+    // },[])
 
     
     return (
