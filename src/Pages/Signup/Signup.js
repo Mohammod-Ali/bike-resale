@@ -18,6 +18,7 @@ const Signup = () => {
 
     // sign in with email and pass handler
     const handleSignUp = data => {
+      console.log(data)
         setSignUpError('')
         createUser(data.email, data.password)
         .then(result => {
@@ -29,7 +30,9 @@ const Signup = () => {
                 displayName: data.name
             }
             updateUser(userInfo)
-            .then(() => {})
+            .then(() => {
+              
+            })
             .catch(err => console.log(err))
 
             navigate('/')
@@ -74,7 +77,7 @@ const Signup = () => {
             {required: 'Name is required'})}
             className="input input-bordered w-full max-w-xs"
           />
-          {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
+          {errors.name && <p className='text-red-600'>{errors.name?.message}</p>}
         </div>
       <div className="form-control w-full max-w-xs">
           <label className="label">
@@ -88,6 +91,14 @@ const Signup = () => {
           />
           {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
         </div>
+       {/* dropdown */}
+        <select  className="select select-bordered w-full max-w-xs mt-5" {...register("category", { required: 'Select a option' })}>
+        <option value="">Select Buyer or Seller account</option>
+        <option value="buyer">Buyer</option>
+        <option value="seller">Seller</option>
+      </select>
+      {errors.category && <p className='text-red-600'>{errors.category?.message}</p>}
+
       <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text">Password</span>
