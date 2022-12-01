@@ -11,15 +11,27 @@ import CategoryCart from '../CategoryCart/CategoryCart';
 
 const Home = () => {
     // const [bikes, setBikes] = useState()
-    const [category, setCategory] = useState()
-// console.log(category)
+    const [category, setCategory] = useState('')
+console.log(category)
     const [bikeModal, setBikeModal] = useState(null)
  
-const {data: bikes = [], refetch } = useQuery({
-    queryKey: ["bikeCollections"],
-    queryFn: () => fetch('http://localhost:5000/bikeCollections')
-    .then(res => res.json())
-})
+    const {data: bikes = [], refetch } = useQuery({
+        queryKey: ["bikeCollections"],
+        queryFn: () => fetch('http://localhost:5000/bikeCollections')
+        .then(res => res.json())
+    })
+
+    // const {data: bikes = [], isLoading, refetch} = useQuery({
+    //     queryKey: ["bookings", category],
+    //     queryFn: () => fetch(`http://localhost:5000/bikeCollections?category=${category}`).then(res => res.json())
+    //   })
+    
+    //   if(isLoading){
+    //     return <div className='flex align-middle justify-center'>
+    //         <progress className='progress w-56 '></progress>
+    //     </div>
+    //   }
+    
 
     // useEffect( () =>{
     //     fetch('http://localhost:5000/bikeCollections')
