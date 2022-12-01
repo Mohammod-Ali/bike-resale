@@ -50,9 +50,10 @@ const Signup = () => {
       googleLoginProvider(googleProvider)
       .then(res => {
         const user = res.user;
-        console.log(user)
+        console.log(user.email)
+        saveUser(user.displayName, user.email)
+        toast.success('User Created Successfully')
 
-        
         navigate('/')
       })
       .catch(error => {

@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
+import PrivateRoute from '../../../Routes/PrivateRoute/PrivateRoute';
 import Banner from '../Banner/Banner';
 import BikeCard from '../BikeCard/BikeCard';
+import BookingModal from '../BookingModal/BookingModal';
 import Categories from '../Categories/Categories';
 import CategoryCart from '../CategoryCart/CategoryCart';
 
@@ -10,9 +12,10 @@ import CategoryCart from '../CategoryCart/CategoryCart';
 const Home = () => {
     // const [bikes, setBikes] = useState()
     const [category, setCategory] = useState()
-console.log(category)
-
-const {data: bikes = []} = useQuery({
+// console.log(category)
+    const [bikeModal, setBikeModal] = useState(null)
+ 
+const {data: bikes = [], refetch } = useQuery({
     queryKey: ["bikeCollections"],
     queryFn: () => fetch('http://localhost:5000/bikeCollections')
     .then(res => res.json())
@@ -34,11 +37,22 @@ const {data: bikes = []} = useQuery({
                 bikes?.map(bike => <CategoryCart
                 key={bike._id}
                 bike={bike}
+                setBikeModal={setBikeModal}
                 ></CategoryCart>)
             }
           
             </div>
-          
+        {
+            bikeModal && 
+            <PrivateRoute>
+                <BookingModal
+             bikeModal={bikeModal}
+             setBikeModal={setBikeModal}
+             refetch={refetch}
+            ></BookingModal>
+            </PrivateRoute>
+            
+        }
             <BikeCard></BikeCard>
         </div>
     );

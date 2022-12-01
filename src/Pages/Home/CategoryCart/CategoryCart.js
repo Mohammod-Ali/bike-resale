@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CategoryCart = ({ bike }) => {
-    console.log(bike)
-    const {name, img, descriptions, useTime, condition, location, originalPrice,
+const CategoryCart = ({ bike, setBikeModal }) => {
+    // console.log(bike)
+    const { img, descriptions, useTime, condition, location, originalPrice,
       phoneNumber, postDate, productName,
       resalePrice, categoryId, _id } = bike
   return (
@@ -28,9 +28,10 @@ const CategoryCart = ({ bike }) => {
         
         </div>
         <Link to={`/services/${_id}`}>
-        <button className="btn btn-outline btn-error">Book Now</button>
+        
+       
         </Link>
-          
+        <label onClick={() => setBikeModal(bike)} htmlFor="bike-booking-modal" className="btn btn-outline btn-error">Book Now</label>
         </div>
       </div>
     </div>

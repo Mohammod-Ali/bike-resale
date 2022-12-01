@@ -13,6 +13,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import NotFound from "../../Pages/NotFound/NotFound";
 import Signup from "../../Pages/Signup/Signup";
+import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -45,7 +46,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
     children: [
       {
         path: "/dashboard",
@@ -65,7 +66,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/allseller",
-        element: <AllSeller></AllSeller>,
+        element: <AdminRoute><AllSeller></AllSeller></AdminRoute>
       },
       {
         path: "/dashboard/allbuyer",
