@@ -42,7 +42,7 @@ const AddProduct = () => {
           };
 
           // SAVE THE DATA TO THE DATABASE
-          fetch("http://localhost:5000/bikeCollections", {
+          fetch("https://bike-resale-server-chi.vercel.app/bikeCollections", {
             method: "POST",
             headers: {
               "content-type": "application/json",

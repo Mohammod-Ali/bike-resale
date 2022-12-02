@@ -1,8 +1,16 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project [Live website link](https://bike-resale-2521f.web.app/).
 
-## Available Scripts
+## About this site:
+1. This site build using react js
+2. This site used firebase for authentication
+3. This site using tailwind css and daysi ui component library for design.
+4. As a seller you can add a product for selling and as a buyer you can buyer a product.
+5. Here is a block page, you can acquiring knowledge from this blog.
+
+adminEmail: mohammod1234@gmail.com
+adminPassword: 1234567
 
 In the project directory, you can run:
 
