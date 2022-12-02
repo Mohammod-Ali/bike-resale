@@ -1,13 +1,26 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
 import MyProductCart from './MyProductCart';
 
 const MyProducts = () => {
 
-    const {data: products, isLoading} = useQuery({
+    const {data: products, isLoading, refetch} = useQuery({
         queryKey: ["bookings"],
         queryFn: () => fetch(`http://localhost:5000/bikeCollections`).then(res => res.json())
       })
+
+      const productDeleteHandler = product => {
+        fetch(`http://localhost:5000/bikeCollections/${product._id}`, {
+          method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          refetch()
+          toast(`${product.categoryId} Delete Successfully`)
+        })
+      }
 
       if(isLoading){
         return <div className='flex align-middle justify-center'>
@@ -35,6 +48,7 @@ const MyProducts = () => {
         products?.map( (product, i) => <MyProductCart
         key={i}
         product={product}
+        productDeleteHandler={productDeleteHandler}
         ></MyProductCart>)
       }
     </tbody>

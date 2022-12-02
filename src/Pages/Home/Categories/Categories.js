@@ -2,20 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import CategoryCard from './CategoryCard';
 
-const Categories = ({setCategory}) => {
-    // const [categories, setCategories] = useState()
+const Categories = ({handleFilter, categories}) => {
 
-    const {data: categories = []} = useQuery({
-        queryKey: ['bikeCategories'],
-        queryFn: () => fetch('http://localhost:5000/bikeCategories')
-        .then(res => res.json())
-    })
-
-    // useEffect( () => {
-    //     fetch('http://localhost:5000/bikeCategories')
-    //     .then(res => res.json())
-    //     .then(data => setCategories(data))
-    // },[])
+ 
 
     return (
         <div className='mt-32 mb-20'>
@@ -25,7 +14,7 @@ const Categories = ({setCategory}) => {
                 categories?.map(category => <CategoryCard
                 key={category._id}
                 category={category}
-                setCategory={setCategory}
+                handleFilter={handleFilter}
                 ></CategoryCard>)
             }
            </div>

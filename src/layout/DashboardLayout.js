@@ -9,44 +9,16 @@ import Footer from "../Pages/Shared/Footer/Footer";
 import Navbar from "../Pages/Shared/Navbar/Navbar";
 
 const DashboardLayout = () => {
-  const { user } = useContext(AuthContext)
+  const { user, loading } = useContext(AuthContext)
   const [ isAdmin ] = useAdmin(user?.email)
   const [isSeller] = useSeller(user?.email)
-
-
-
-  // const [isAdmin] = useAdmin(user?.email)
-//   const [user, setUser] = useState()
-// console.log(user)
-//   const {data: users = [], isLoading} = useQuery({
-//     queryKey: ["users"],
-//     queryFn: () => fetch('http://localhost:5000/users').then(res => res.json())
-//   })
   
-  // console.log(users.map(user => (
-  //   console.log(user)
-  //   return user )))
-  // if(users.map(user => user.category === 'admin')){
-  //   // users?.map(user => setUser(user))
-  //   console.log('admin')
 
-  // }
-  // if(users.map(user => user.category === 'seller')){
-  //   // users?.map(user => setUser(user))
-  //   console.log('seller')
-
-  // }
-  // if(users.map(user => user.category === 'buyer')){
-  //   // users?.map(user => setUser(user))
-  //   console.log('buyer')
-  //   return user
-  // }
-
-  // if(isLoading){
-  //   return <div className='flex align-middle justify-center'>
-  //       <progress className='progress w-56 '></progress>
-  //   </div>
-  // }
+  if(loading){
+    return <div className='flex align-middle justify-center'>
+        <progress className='progress w-56 '></progress>
+    </div>
+  }
 
   return (
     <div>
@@ -69,7 +41,7 @@ const DashboardLayout = () => {
             {
               <div>
               {
-                isAdmin || <li>
+                isAdmin || isSeller || <li>
                 <Link to="/dashboard">My orders</Link>
               </li>
               }
@@ -98,6 +70,11 @@ const DashboardLayout = () => {
                 <li>
                   <Link to="/dashboard/allbuyer">
                     All Buyer
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/reporteditems">
+                    Reported Items
                   </Link>
                 </li>
                   </>

@@ -1,6 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import toast from "react-hot-toast";
 
 const AllSeller = () => {
+  const {data: usersCollections, isLoading, refetch} = useQuery({
+    queryKey: ["users"],
+    queryFn: () => fetch('http://localhost:5000/users')
+    .then(res => res.json())
+  })
+
+  const sellerDeleteHandler= (id) => {
+    fetch(`http://localhost:5000/users/${id}`, {
+      method: "DELETE",
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      refetch()
+      toast.success('Delete Successfully')
+    })
+  }
+
+if(isLoading){
+  return <h2>loading</h2>
+}
   return (
     <div>
       <h1 className="text-4xl mb-8">All Seller:</h1>
@@ -15,26 +38,16 @@ const AllSeller = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-            </tr>
+            {
+              usersCollections.map((user, i) => <tr key={i}>
+                <th>{i + 1}</th>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td><button onClick={() => sellerDeleteHandler(user._id)} className="btn btn-sm">Delete</button></td>
+              </tr>)
+            }
+            
 
-            <tr>
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-            </tr>
-
-            <tr>
-              <th>3</th>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Red</td>
-            </tr>
           </tbody>
         </table>
       </div>

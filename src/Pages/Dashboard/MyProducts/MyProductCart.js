@@ -1,7 +1,7 @@
 import React from 'react';
 
-const MyProductCart = ({product}) => {
-    console.log(product)
+const MyProductCart = ({product, productDeleteHandler}) => {
+    // console.log(product)
     const { img, productName, resalePrice, categoryId, location, condition
     } = product
 
@@ -28,7 +28,7 @@ const MyProductCart = ({product}) => {
         </td>
         <td>Price: {resalePrice}</td>
         <th>
-          <button className="btn btn-ghost btn-xs">DELETE</button>
+          <button onClick={() => productDeleteHandler(product)} className="btn btn-ghost btn-xs">DELETE</button>
         </th>
       </tr>
         </>
