@@ -7,6 +7,7 @@ import BookingModal from "../BookingModal/BookingModal";
 import Categories from "../Categories/Categories";
 import CategoryCart from "../CategoryCart/CategoryCart";
 import BlackFridayCard from "../BlackFridayCard/BlackFridayCard";
+import FeaturesCard from "../FeaturesCard/FeaturesCard";
 
 const Home = () => {
   const [bikeModal, setBikeModal] = useState(null);
@@ -80,6 +81,7 @@ const Home = () => {
       )}
       <BlackFridayCard></BlackFridayCard>
       <BikeCard></BikeCard>
+      <FeaturesCard></FeaturesCard>
     </div>
   );
 };
