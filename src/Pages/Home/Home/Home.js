@@ -6,6 +6,7 @@ import BikeCard from "../BikeCard/BikeCard";
 import BookingModal from "../BookingModal/BookingModal";
 import Categories from "../Categories/Categories";
 import CategoryCart from "../CategoryCart/CategoryCart";
+import BlackFridayCard from "../BlackFridayCard/BlackFridayCard";
 
 const Home = () => {
   const [bikeModal, setBikeModal] = useState(null);
@@ -77,6 +78,7 @@ const Home = () => {
           ></BookingModal>
         </PrivateRoute>
       )}
+      <BlackFridayCard></BlackFridayCard>
       <BikeCard></BikeCard>
     </div>
   );
