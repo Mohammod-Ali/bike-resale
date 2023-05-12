@@ -12,7 +12,7 @@ const BlackFridayCard = () => {
         </div>
         <div className="news">
             <marquee className="news-content">
-                <p>School Will remain close on the occasion of diwali from 22nd Oct, 2022 to 26th Oct 2022</p>
+                <p>Find the best Black Friday Deals at Best Buy at the Black Friday 2023 sale event. Shop deals on all kinds of electronics, including the latest tech gifts School Will remain close on the occasion of diwali from 22nd Oct, 2023 to 26th Oct 2023</p>
             </marquee>
         </div>
     </div>
