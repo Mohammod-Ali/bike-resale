@@ -12,7 +12,7 @@ const News = () => {
     <div>
       <h1 className="text-5xl font-bold">Bike News Box!</h1>
       <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-      <button onClick={modal} className="btn btn-primary">Get Started</button>
+      <button onClick={modal} className="btn btn-primary">Details</button>
     </div>
   </div>
 </div>
