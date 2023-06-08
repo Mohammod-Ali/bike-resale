@@ -9,6 +9,10 @@ import CategoryCart from "../CategoryCart/CategoryCart";
 import BlackFridayCard from "../BlackFridayCard/BlackFridayCard";
 import FeaturesCard from "../FeaturesCard/FeaturesCard";
 import BestSeller from "../BestSeller/BestSeller";
+import UpcomingOffers from "../UpcomingOffers/UpcomingOffers";
+import News from "../News/News";
+import Contact from "../Contact/Contact";
+import Clients from "../Clients/Clients";
 
 const Home = () => {
   const [bikeModal, setBikeModal] = useState(null);
@@ -84,6 +88,10 @@ const Home = () => {
       <BestSeller></BestSeller>
       <BikeCard></BikeCard>
       <FeaturesCard></FeaturesCard>
+      <UpcomingOffers></UpcomingOffers>
+       <News></News>
+       <Clients></Clients>
+       <Contact></Contact>
     </div>
   );
 };
